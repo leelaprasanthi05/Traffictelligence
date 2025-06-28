@@ -1,0 +1,44 @@
+Type “pip install numpy” and click enter.
+Type “pip install pandas” and click enter.
+Type “pip install matplotlib” and click enter.
+Type “pip install scikit-learn” and click enter.
+Type “pip install Flask” and click enter.
+Type “pip install xgboost” and click enter.
+Download the dataset
+You can collect datasets from different open sources like kaggle.com, data.gov, UCI machine learning repository etc.
+
+ Please refer to the link given below to download the data set and to know about the dataset
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import sklearn as sk
+from sklearn import linear_model
+from sklearn import tree
+from sklearn import ensemble
+from sklearn import svm
+import xgboost
+data=pd.read_csv(r"C:\Users\USER\Downloads\traffic volume.csv") 
+data.head()
+data.info()
+data.describe()
+data.isnull().sum()
+from collections import Counter
+data['temp'].fillna(data['temp'].mean(),inplace=True)
+data['rain'].fillna(data['rain'].mean(),inplace=True)
+data['snow'].fillna(data['snow'].mean(),inplace=True)
+print(Counter(data['weather']))
+data['weather'].fillna('Clouds',inplace=True)
+data.isnull().sum()
+from sklearn.preprocessing import LabelEncoder
+le=LabelEncoder()
+data['weather']=le.fit_transform(data['weather'])
+data['holiday']=le.fit_transform(data['holiday'])
+data.head()
+data[["day","month","year"]]=data["date"].str.split("-",expand=True)
+data[["hours","minutes","seconds"]]=data["Time"].str.split(":",expand=True)
+data.drop(columns=['date','Time'],axis=1,inplace=True)
+y=data['traffic_volume']
+x=data.drop(columns=['traffic_volume'],axis=1)
+data.head()
+names=x.columns
+from sklearn.preprocessing import scale
