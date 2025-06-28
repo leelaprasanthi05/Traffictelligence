@@ -37,8 +37,38 @@ data.head()
 data[["day","month","year"]]=data["date"].str.split("-",expand=True)
 data[["hours","minutes","seconds"]]=data["Time"].str.split(":",expand=True)
 data.drop(columns=['date','Time'],axis=1,inplace=True)
-y=data['traffic_volume']
+y=data['traffic_volumfrom sklearn import linear_model
+from sklearn import tree
+from sklearn import ensemble
+from sklearn import svm
+import xgbooste']
 x=data.drop(columns=['traffic_volume'],axis=1)
 data.head()
 names=x.columns
 from sklearn.preprocessing import scale
+x=scale(x)
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state =0)
+from sklearn import linear_model
+from sklearn import tree
+from sklearn import ensemble
+from sklearn import svm
+import xgboost
+lin_reg=linear_model.LinearRegression()
+Dtree=tree.DecisionTreeRegressor()
+Rand=ensemble.RandomForestRegressor()
+svr=svm.SVR()
+XGB=xgboost.XGBRegressor()
+lin_reg.fit(x_train,y_train)
+Dtree.fit(x_train,y_train)
+Rand.fit(x_train,y_train)
+svr.fit(x_train,y_train)
+XGB.fit(x_train,y_train)
+p1=lin_reg.predict(x_train)
+p2=Dtree.predict(x_train)
+p3=Rand.predict(x_train)
+p4=svr.predict(x_train)
+p5=xGB.predict(x_train)
+from sklearn import metrics
+x=pd.DataFrame(x,columns=names)
+x.head()
+from sklearn.model_selection import train_test_split
